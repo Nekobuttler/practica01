@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns="http://www.w3.org/1999/xhthml">
+
+   
+    
+    <head>
+        <title>Estados</title>
+        <meta charset="UTF-8">
+        <link href="../static/css/estilo1.css" rel="stylesheet" type="text/css"/>
+    </head>
+    
+    <body>
+        
+      
+        <a href="index.html"></a>
+        <h1 class="title">Directorio e informacion de los estados</h1>
+         <a th:href="@{/nuevoEstado}">
+            <div>
+                <h3>Nuevo estado</h3>
+            </div>
+        </a>
+        
+            <div>
+                <h3>Tabla de informacion</h3>
+            </div>
+       
+        <div th:if="${estados != null and !estados.empty}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>id_Estado</th>
+                    <th>Costas</th>
+                    <th>Nombre de estado</th>
+                    <th>Pais</th>
+                    <th>Poblacion</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                <tr th:each="estado : ${estados}">    <!-- index controller model atribute-->
+                    <td th:text="${estado.id_Estado}"></td>
+                    <td th:text="${estado.costas}"></td>
+                    <td th:text="${estado.nombre_Estado}"></td>
+                    <td th:text="${estado.pais}"></td>
+                    <td th:text="${estado.poblacion}"></td>
+                    
+                    
+                    
+                    <td><a class="links" th:href="@{/modificar_Estado/}+${estado.id_Estado}">Modificar</a></td> <!-- Esto se nombre igual que las funciones definidas en el controller -->
+                    
+                    <td><a class="links" th:href="@{/eliminar_Estado/}+${estado.id_Estado}">Elimninar</a></td>
+                </tr>
+            </tbody>
+        </table>
+            </div>
+        <div th:if="${estados == null or estados.empty}">
+            <h2>No tenemos lista de clientes que mostrar</h2>    
+        </div>
+        
+    </body>
+</html>

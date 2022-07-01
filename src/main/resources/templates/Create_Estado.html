@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhthml">
+    <head>
+        <title>Estados</title>
+        <meta charset="UTF-8">
+        <link href="../static/css/estilo1.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        
+        <a href="index.html"></a>
+        <h1>Datos de Estados</h1>
+        <h2>Por favor rellenelos</h2>
+        <a th:href="@{/}">
+            <div>
+                <h3>Regresar</h3>
+            </div>
+        </a>
+        <form th:action="@{/guardarEstado}"
+              method="post"
+              th:object="${Estado}">  <!-- Este objeto es el que se selecciona en el get mapping del modificar -->
+            <input type="hidden" name="id_Estado" th:field="*{id_Estado}">    <!-- No entiendo porque da error, al parecer trata de un error por no encontrar el id -->
+           
+            <label for="nombre_Estado">Nombre:</label>
+            <input type="text" name="nombre_Estado" th:field="*{nombre_Estado}"/>
+            <br>
+                <label for="pais">Pais</label>
+            <input type="text" name="pais" th:field="*{pais}"/>
+            <br>
+                <label for="poblacion">poblacion</label>
+            <input type="number" name="poblacion" th:field="*{poblacion}"/>
+            <br>
+                <label for="costas">costas</label>
+             <input type=number name="costas" th:field="*{costas}"/>
+            <br>
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        
+    </body>
+</html>
